@@ -1,11 +1,14 @@
-import { createAction } from "@ngrx/store";
+import { createAction, props } from '@ngrx/store';
+import { Message } from '../../../services/message.service';
 
-export const addMessage = createAction(
-  '[Message Component] Add Message',
-  (message: string) => ({ message })
+export const loadMessages = createAction('[Message] Load Messages');
+
+export const loadMessagesSuccess = createAction(
+  '[Message] Load Messages Success',
+  props<{ messages: Message[] }>()
 );
 
-export const updateMessage = createAction(
-  '[Message Component] Update Message',
-  (message: string) => ({ message })
+export const loadMessagesFailure = createAction(
+  '[Message] Load Messages Failure',
+  props<{ error: any }>()
 );

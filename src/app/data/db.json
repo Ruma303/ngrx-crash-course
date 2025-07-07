@@ -1,0 +1,24 @@
+{
+  "messages": [
+    {
+      "id": 1,
+      "content": "Hello, World!"
+    },
+    {
+      "id": 2,
+      "content": "Welcome to the NgRx Crash Course."
+    },
+    {
+      "id": 3,
+      "content": "This is a JSON message."
+    },
+    {
+      "id": 4,
+      "content": "Learning Angular is fun!"
+    },
+    {
+      "id": 5,
+      "content": "Have a great day!"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { addMessage, updateMessage } from '../../ngrx/store/message/message.actions';
+// import { addMessage, updateMessage } from '../../ngrx/store/message/message.actions';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -9,7 +9,7 @@ import { Store } from '@ngrx/store';
   template: `
     <h3>Message Component</h3>
     <textarea [(ngModel)]="userMessage"></textarea><br>
-    <button (click)="dispatchAddMessage()">Add Message</button>
+    <!-- <button (click)="dispatchAddMessage()">Add Message</button> -->
   `,
   styles: ``
 })
@@ -24,9 +24,9 @@ export class MessageComponent {
       });
   }
 
-  dispatchAddMessage() {
+  /* dispatchAddMessage() {
     if (this.userMessage().length > 0) {
       this.store.dispatch(addMessage(this.userMessage()));
     }
-  }
+  } */
 }
