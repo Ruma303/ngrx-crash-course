@@ -15,6 +15,6 @@ export class MessageService {
   constructor(private http: HttpClient) {}
 
   getMessages(): Observable<Message[]> {
-    return this.http.get<Message[]>('http://localhost:3000/messages');
+    return this.http.get<Message[]>('http://localhost:4000/messages');
   }
 }
