@@ -1,10 +1,11 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { addMessage, updateMessage } from '../../ngrx/store/message/message.actions';
+import { addMessage } from '../../ngrx/store/message/message.actions';
 import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-message',
+  standalone: true,
   imports: [FormsModule],
   template: `
     <h3>Message Component</h3>
@@ -15,18 +16,16 @@ import { Store } from '@ngrx/store';
 })
 export class MessageComponent {
 
-  userMessage = signal('');
+  userMessage = '';
 
   constructor(private store: Store<{ messageSlice: string }>) {
-    this.store.select((state) => state.messageSlice)
+    this.store.select(state => state.messageSlice)
       .subscribe((message: string) => {
-        this.userMessage.set(message);
+        this.userMessage = message;
       });
   }
 
   dispatchAddMessage() {
-    if (this.userMessage().length > 0) {
-      this.store.dispatch(addMessage(this.userMessage()));
-    }
+    this.store.dispatch(addMessage({ message: this.userMessage }));
   }
 }

@@ -3,7 +3,6 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideStore } from '@ngrx/store';
-import { counterReducer } from './ngrx/store/counter/counter.reducers';
 import { messageReducer } from './ngrx/store/message/message.reducers';
 
 export const appConfig: ApplicationConfig = {
@@ -11,7 +10,6 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideStore({
-      counterSlice: counterReducer,
       messageSlice: messageReducer
     })
   ]
