@@ -1,15 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CounterComponent } from './components/counter/counter.component';
-import { Counter2Component } from "./components/counter2/counter2.component";
-import { Counter3Component } from "./components/counter3/counter3.component";
+import { MessageComponent } from './components/message/message.component';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CounterComponent, Counter2Component, Counter3Component],
+  imports: [RouterOutlet, CounterComponent, MessageComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'ngrx-crash-course';
+
+  @ViewChild('output', { static: true }) output: ElementRef | '' = '';
+
+  constructor(private store: Store<{ messageSlice: string }>) {
+    this.store.select(state => state.messageSlice)
+      .subscribe(message => {
+        console.log('Current message:', message);
+      });
+  }
+  ngAfterViewInit() {
+    if (this.output) {
+      this.store.select(state => state.messageSlice)
+        .subscribe(message => {
+          if (this.output instanceof ElementRef) {
+            this.output.nativeElement.textContent = message;
+          }
+        });
+    }
+  }
 }

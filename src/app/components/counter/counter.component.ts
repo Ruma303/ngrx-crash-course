@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
-import { increment, decrement, reset } from '../../ngrx/store/counter.actions';
+import { increment, decrement, reset } from '../../ngrx/store/counter/counter.actions';
 
 @Component({
   selector: 'app-counter',
@@ -23,8 +23,8 @@ export class CounterComponent {
 
   counter$: Observable<number>;
 
-  constructor(private store: Store<{ myCounter: number }>) {
-    this.counter$ = this.store.select('myCounter');
+  constructor(private store: Store<{ counterSlice: number }>) {
+    this.counter$ = this.store.select('counterSlice');
   }
 
   dispatchIncrement() {
